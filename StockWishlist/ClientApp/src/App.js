@@ -1,24 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import { Page, Button, CalloutCard } from '@shopify/polaris';
+import StockGridComponent from './components/StockGridComponent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Page
+      title="Stock Wishlist"
+      subtitle="A personal repository to hold the stocks that you wish to buy!">
+      <div style={{ textAlign: 'center' }}>
+        <Button monochrome outline>
+          Add a Stock
+          </Button>
+      </div>
+      <StockGridComponent />
+    </Page>
   );
 }
 
