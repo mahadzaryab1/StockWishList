@@ -35,6 +35,10 @@
   grid-gap: 40px;
 }
 
+.card-content {
+  height: 50px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
