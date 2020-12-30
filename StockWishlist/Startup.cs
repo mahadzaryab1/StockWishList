@@ -23,6 +23,7 @@ namespace StockWishlist
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(options => options.UseInMemoryDatabase("Stock Wishlist"));
+            services.AddScoped<IStockWishlistProvider, StockWishlistProvider>();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
