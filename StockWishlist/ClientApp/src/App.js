@@ -1,5 +1,5 @@
 import './App.css';
-import { Page, Button, CalloutCard } from '@shopify/polaris';
+import { Page } from '@shopify/polaris';
 import StockGridComponent from './components/StockGridComponent';
 import AddFormComponent from './components/AddFormComponent';
 
