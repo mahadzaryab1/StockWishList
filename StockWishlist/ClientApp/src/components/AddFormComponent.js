@@ -27,11 +27,18 @@ const AddFormComponent = () => {
             setCompanyName('');
             setStockTicker('');
             setStockExchange(['NYSE']);
+            setReason('');
             setFile(null);
         }, [active]
     );
 
-    const handleDropZoneDrop = useCallback((_dropFiles, acceptedFiles, _rejectedFiles) => setFile(file => acceptedFiles[0]), []);
+    const handleSubmit = () => {
+        console.log({ companyName, stockTicker, stockExchange, reason, file });
+        handleChange();
+    }
+
+    const handleDropZoneDrop = useCallback(
+        (_dropFiles, acceptedFiles, _rejectedFiles) => setFile(file => acceptedFiles[0]), []);
 
     const validImageTypes = ['image/jpeg', 'image/png'];
 
@@ -63,7 +70,12 @@ const AddFormComponent = () => {
                 title="Add a Stock to your Wishlist!"
                 primaryAction={{
                     content: 'Add Stock',
-                    onAction: handleChange,
+                    onAction: handleSubmit,
+                    disabled:
+                        companyName.length === 0 ||
+                        stockTicker.length === 0 ||
+                        reason.length === 0 ||
+                        !file
                 }}
                 secondaryActions={[
                     {
@@ -73,10 +85,20 @@ const AddFormComponent = () => {
                 ]}
             >
                 <Modal.Section>
-                    <Form noValidate>
+                    <Form noValidate={true}>
                         <FormLayout.Group>
-                            <TextField type="text" label="Company Name" value={companyName} onChange={(newValue) => { setCompanyName(newValue) }} />
-                            <TextField type="text" label="Stock Ticker" value={stockTicker} onChange={(newValue) => { setStockTicker(newValue) }} />
+                            <TextField
+                                type="text"
+                                label="Company Name"
+                                value={companyName}
+                                onChange={(newValue) => { setCompanyName(newValue) }}
+                                error={companyName.length > 0 ? false : "Company name is required"} />
+                            <TextField
+                                type="text"
+                                label="Stock Ticker"
+                                value={stockTicker}
+                                onChange={(newValue) => { setStockTicker(newValue) }}
+                                error={stockTicker.length > 0 ? false : "Stock ticker is required"} />
                         </FormLayout.Group>
                         <FormLayout.Group>
                             <ChoiceList
@@ -97,6 +119,8 @@ const AddFormComponent = () => {
                                 onChange={(newValue) => { setReason(newValue) }}
                                 multiline={3}
                                 maxLength={150}
+                                showCharacterCount
+                                error={reason.length > 0 ? false : "A description of the investment is required"}
                             />
                         </FormLayout.Group>
                         <FormLayout.Group>
@@ -104,7 +128,8 @@ const AddFormComponent = () => {
                                 allowMultiple={false}
                                 onDrop={handleDropZoneDrop}
                                 label="Upload an image of the company's logo"
-                                type="image">
+                                type="image"
+                            >
                                 {uploadedFile}
                                 {fileUpload}
                             </DropZone>
