@@ -35,5 +35,12 @@ namespace StockWishlist.Controllers
             await _stockWishlistProvider.AddStockToWishlistAsync(entry);
             return Ok();
         }
+
+        [HttpDelete("{entryId}")]
+        public async Task<ActionResult> DeleteEntry(string entryId)
+        {
+            await _stockWishlistProvider.RemoveStockFromWishlistAsync(entryId);
+            return Ok();
+        }
     }
 }

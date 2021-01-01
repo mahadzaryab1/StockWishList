@@ -15,7 +15,7 @@ namespace StockWishlist.DataProvider.Models
         /// <example>be9631db-0056-4158-874e-6d97582e1290</example>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The name of the company
