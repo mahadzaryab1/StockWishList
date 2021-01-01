@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import StockCardComponent from './StockCardComponent';
+import { EmptyState } from '@shopify/polaris';
+import EmptyStateIllustration from '../illustrations/404.svg'
+import '../App.css';
 
 const StockGridComponent = () => {
     const initGridState = [
@@ -42,10 +45,20 @@ const StockGridComponent = () => {
 
 
     return (
-        <div className="card-grid">
-            {grid.map(gridItem => (
-                <StockCardComponent stockInformation={gridItem} />
-            ))}
+
+        <div className="empty-state">
+            {grid.length > 0 && <div className="card-grid">
+                {grid.map(gridItem => (
+                    <StockCardComponent stockInformation={gridItem} />
+                ))}
+            </div>}
+            {grid.length === 0 && <EmptyState
+                heading="Your Wish List is Empty!"
+                image={EmptyStateIllustration}
+                imageContained={true}
+            >
+                <p>Click on <i>Add a Stock</i> to begin adding stocks to your wishlist.</p>
+            </EmptyState>}
         </div>
     )
 }
