@@ -1,7 +1,8 @@
 import React from 'react';
 import { CalloutCard } from '@shopify/polaris';
+import axios from 'axios';
 
-const StockCardComponent = ({ stockInformation }) => {
+const StockCardComponent = ({ stockInformation, setLoadingGrid }) => {
     return (
         <div>
             <CalloutCard
@@ -9,7 +10,11 @@ const StockCardComponent = ({ stockInformation }) => {
                 illustration={stockInformation.imageUrl}
                 primaryAction={{
                     content: 'Remove',
-                    url: 'https://www.shopify.com',
+                    onAction: () => {
+                        axios.delete('/api/wishlist/' + stockInformation.id).then(() => {
+                            setLoadingGrid(true);
+                        })
+                    }
                 }}
             >
                 <div className="card-content">

@@ -54,7 +54,7 @@ const StockGridComponent = ({loadingGrid, setLoadingGrid}) => {
         <div>
             {!loadingGrid && grid.length > 0 && <div className="card-grid">
                 {grid.map(gridItem => (
-                    <StockCardComponent stockInformation={gridItem} />
+                    <StockCardComponent stockInformation={gridItem} setLoadingGrid={setLoadingGrid} />
                 ))}
             </div>}
             {!loadingGrid && grid.length === 0 && <div className="empty-state"><EmptyState
