@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import StockCardComponent from './StockCardComponent';
-import { EmptyState } from '@shopify/polaris';
+import { EmptyState, Spinner } from '@shopify/polaris';
 import EmptyStateIllustration from '../illustrations/404.svg'
 import '../App.css';
+import axios from 'axios';
 
-const StockGridComponent = () => {
+const StockGridComponent = ({loadingGrid, setLoadingGrid}) => {
     const initGridState = [
         {
             companyName: 'Square',
@@ -37,28 +38,33 @@ const StockGridComponent = () => {
         }
     ]
 
-    const [grid, setGrid] = useState(initGridState);
+    const [grid, setGrid] = useState([]);
 
     useEffect(() => {
-        console.log('here');
-    }, [grid])
-
+        if (loadingGrid) {
+            axios.get('/api/wishlist').then((res) => {
+                console.log(res);
+                setGrid(res.data.wishlistEntries);
+                setLoadingGrid(false);
+            })
+        }
+    }, [loadingGrid])
 
     return (
-
-        <div className="empty-state">
-            {grid.length > 0 && <div className="card-grid">
+        <div>
+            {!loadingGrid && grid.length > 0 && <div className="card-grid">
                 {grid.map(gridItem => (
                     <StockCardComponent stockInformation={gridItem} />
                 ))}
             </div>}
-            {grid.length === 0 && <EmptyState
+            {!loadingGrid && grid.length === 0 && <div className="empty-state"><EmptyState
                 heading="Your Wish List is Empty!"
                 image={EmptyStateIllustration}
                 imageContained={true}
             >
                 <p>Click on <i>Add a Stock</i> to begin adding stocks to your wishlist.</p>
-            </EmptyState>}
+            </EmptyState></div>}
+            {loadingGrid && <div className="center-spinner"><Spinner accessibilityLabel="Spinner example" size="large" color="teal" /></div>}
         </div>
     )
 }

@@ -13,8 +13,9 @@ import {
 } from '@shopify/polaris';
 import { NoteMinor } from '@shopify/polaris-icons';
 import { projectStorage } from '../firebase/config';
+import axios from 'axios';
 
-const AddFormComponent = () => {
+const AddFormComponent = ({setLoadingGrid}) => {
     const [active, setActive] = useState(false);
     const [companyName, setCompanyName] = useState('');
     const [stockTicker, setStockTicker] = useState('');
@@ -40,8 +41,19 @@ const AddFormComponent = () => {
         console.log({ companyName, stockTicker, stockExchange, reason, file });
         const storageRef = projectStorage.ref(file.name);
         storageRef.put(file).then(() => {
-            storageRef.getDownloadURL().then(result => console.log(result));
-            handleChange();
+            storageRef.getDownloadURL().then(imageUrl => {
+                const request = {
+                    companyName,
+                    stockExchange: stockExchange[0],
+                    stockTicker,
+                    imageUrl,
+                    reason
+                }
+                axios.post('/api/wishlist', request).then(() => {
+                    handleChange();
+                    setLoadingGrid(true);
+                });
+            });
         });
     }
 
