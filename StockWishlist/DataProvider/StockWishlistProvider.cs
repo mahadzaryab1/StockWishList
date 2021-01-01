@@ -33,11 +33,20 @@ namespace StockWishlist.DataProvider
             await _context.StockWishlistEntries.AddAsync(entry);
             await _context.SaveChangesAsync();
         }
+
+        public async Task RemoveStockFromWishlistAsync(string entryId)
+        {
+            StockWishlistEntry entry = new StockWishlistEntry() {Id = entryId};
+            _context.StockWishlistEntries.Attach(entry);
+            _context.StockWishlistEntries.Remove(entry);
+            await _context.SaveChangesAsync(); 
+        }
     }
 
     public interface IStockWishlistProvider
     {
         Task<Wishlist> GetStockWishlistEntriesAsync();
         Task AddStockToWishlistAsync(StockWishlistEntry entry);
+        Task RemoveStockFromWishlistAsync(string entryId);
     }
 }
