@@ -18,7 +18,10 @@ namespace StockWishlist.DataProvider
 
         public async Task<Wishlist> GetStockWishlistEntriesAsync()
         {
-            StockWishlistEntry[] entries = await _context.StockWishlistEntries.ToArrayAsync();
+            StockWishlistEntry[] entries = await _context
+                .StockWishlistEntries
+                .OrderByDescending(entry => entry.CreatedDate)
+                .ToArrayAsync();
             Wishlist wishlist = new Wishlist() {WishlistEntries = entries};
 
             return wishlist;
