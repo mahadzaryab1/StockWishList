@@ -15,7 +15,7 @@ const StockGridComponent = () => {
             stockExchange: 'TSE',
             stockTicker: 'SHOP',
             imageUrl: 'https://pbs.twimg.com/profile_images/1316144069643513856/oNmHnrBG.jpg',
-            reason: 'Shopify is benefitting from the shift to e-commerce and is continously expanding its ecosystem'
+            reason: 'Shopify has benefitted from the shift to e-commerce and is continuously expanding its ecosystem'
 
         },
         {
