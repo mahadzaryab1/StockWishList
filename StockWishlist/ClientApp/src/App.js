@@ -6,7 +6,7 @@ import AddFormComponent from './components/AddFormComponent';
 function App() {
   return (
     <Page
-      title="Stock Wishlist"
+      title="Stock Wish List"
       subtitle="A personal repository to hold the stocks that you wish to buy!">
       <div style={{ textAlign: 'center' }}>
         <AddFormComponent />
