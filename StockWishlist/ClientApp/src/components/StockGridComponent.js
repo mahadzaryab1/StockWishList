@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StockCardComponent from './StockCardComponent';
 
 const StockGridComponent = () => {
@@ -35,6 +35,12 @@ const StockGridComponent = () => {
     ]
 
     const [grid, setGrid] = useState(initGridState);
+
+    useEffect(() => {
+        console.log('here');
+    }, [grid])
+
+
     return (
         <div className="card-grid">
             {grid.map(gridItem => (

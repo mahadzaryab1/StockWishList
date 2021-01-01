@@ -12,6 +12,7 @@ import {
     Caption
 } from '@shopify/polaris';
 import { NoteMinor } from '@shopify/polaris-icons';
+import { projectStorage } from '../firebase/config';
 
 const AddFormComponent = () => {
     const [active, setActive] = useState(false);
@@ -20,6 +21,7 @@ const AddFormComponent = () => {
     const [stockExchange, setStockExchange] = useState(['NYSE']);
     const [reason, setReason] = useState('');
     const [file, setFile] = useState();
+    const [loading, setLoading] = useState(false);
 
     const handleChange = useCallback(
         () => {
@@ -29,12 +31,18 @@ const AddFormComponent = () => {
             setStockExchange(['NYSE']);
             setReason('');
             setFile(null);
+            setLoading(false);
         }, [active]
     );
 
     const handleSubmit = () => {
+        setLoading(true);
         console.log({ companyName, stockTicker, stockExchange, reason, file });
-        handleChange();
+        const storageRef = projectStorage.ref(file.name);
+        storageRef.put(file).then(() => {
+            storageRef.getDownloadURL().then(result => console.log(result));
+            handleChange();
+        });
     }
 
     const handleDropZoneDrop = useCallback(
@@ -75,7 +83,8 @@ const AddFormComponent = () => {
                         companyName.length === 0 ||
                         stockTicker.length === 0 ||
                         reason.length === 0 ||
-                        !file
+                        !file,
+                    loading: loading
                 }}
                 secondaryActions={[
                     {
