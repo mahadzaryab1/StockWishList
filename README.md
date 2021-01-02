@@ -8,5 +8,11 @@ The Stock Wish List is a project that allows the user to keep track of the stock
 * Design Components - Shopify Polaris
 * Image Storage - Google Firebase
 
+## Requirements 
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) (Optional but recommended)
+* [.NET Core 3.1 Runtime](https://dotnet.microsoft.com/download/dotnet-core/3.1) (only required if you do not wish to install Visual Studio)
+
 ## Running the Application (Method 1: Recommended)
 The easiest and quickest way to get this application running is by opening the [solution file](StockWishlist.sln) in Visual Studio 2019. You can do this by simply double clicking the solution file and opening it in Visual Studio when prompted. You can also open up Visual Studio first, go to **File->Open->Project/Solution** and navigate to the solution file from there. This will load the entire application and all of its contents in the IDE. Now, you can simply navigate to **Debug->Start Debugging** and the application should start up automatically. 
+
+## Running the Application (Method 2)
