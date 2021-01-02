@@ -28,3 +28,6 @@ The output pane will give you two URLs where the application is being hosted on 
 * **/** - landing page of the application
 * **/swagger** - the swagger documentation for the API
 * **/api/wishlist** - the endpoint where all the API requests for this application are made
+
+# Documentation
+I created a notion page in which I include a demo of the application. You can access it [here](https://www.notion.so/Stock-Wish-List-Project-Documentation-45a6a71f514f4a7da34fa1ab0cf15f45)!
