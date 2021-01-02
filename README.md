@@ -9,4 +9,4 @@ The Stock Wish List is a project that allows the user to keep track of the stock
 * Image Storage - Google Firebase
 
 ## Running the Application (Method 1: Recommended)
-The easiest and quickest way to get this application running is by opening the solution file[StockWishlist.sln] in Visual Studio 2019. 
+The easiest and quickest way to get this application running is by opening the [solution file](StockWishlist.sln) in Visual Studio 2019. 
