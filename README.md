@@ -22,4 +22,4 @@ The second way that you can start this application is by using the command line.
 cd StockWishlist/ # change directory to project folder
 dotnet run # build and run the application
 ```
-The output pane will give you two URLs where the application is being hosted on your local machine. It is highly recommended you use the link beginning with 'https://'
+The output pane will give you two URLs where the application is being hosted on your local machine. It is highly recommended you use the link beginning with __https://__
