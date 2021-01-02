@@ -21,14 +21,21 @@ namespace StockWishlist.Controllers
             _stockWishlistProvider = stockWishlistProvider;
         }
 
-        // GET: api/Wishlist
+        /// <summary>
+        /// Gets all the wish list entries from
+        /// a session. 
+        /// </summary>
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<ActionResult<Wishlist>> Get()
         {
             Wishlist wishlist = await _stockWishlistProvider.GetStockWishlistEntriesAsync(); 
             return Ok(wishlist); 
         }
 
+        /// <summary>
+        /// Adds an entry to the wish list
+        /// </summary>
+        /// <param name="entry">The request object containing details of the wish list entry</param>
         [HttpPost]
         public async Task<ActionResult> PostEntry([FromBody] StockWishlistEntry entry)
         {
@@ -36,6 +43,10 @@ namespace StockWishlist.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Deletes an entry from the wish list
+        /// </summary>
+        /// <param name="entryId">The unique ID of the wish list entry to delete</param>
         [HttpDelete("{entryId}")]
         public async Task<ActionResult> DeleteEntry(string entryId)
         {

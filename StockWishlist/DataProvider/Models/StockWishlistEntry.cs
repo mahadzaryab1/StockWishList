@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace StockWishlist.DataProvider.Models
 {
+    /// <summary>
+    /// The model for a single wish list entry. 
+    /// </summary>
     public class StockWishlistEntry
     {
         /// <summary>
@@ -44,7 +47,7 @@ namespace StockWishlist.DataProvider.Models
         /// The reason that you would like to
         /// invest in this company
         /// </summary>
-        /// <example>Shopify has benefitted from the shift to e-commerce and is continuously expanding its ecosystem</example>
+        /// <example>Shopify has benefited from the shift to e-commerce and is continuously expanding its ecosystem</example>
         [Required]
         public string Reason { get; set; }
 
