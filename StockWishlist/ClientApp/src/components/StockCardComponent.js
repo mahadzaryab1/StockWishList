@@ -2,6 +2,12 @@ import React from 'react';
 import { CalloutCard } from '@shopify/polaris';
 import axios from 'axios';
 
+/**
+ * Renders a card which contains information 
+ * about a single stock entry
+ * 
+ * @param {*} props 
+ */
 const StockCardComponent = ({ stockInformation, setLoadingGrid }) => {
     return (
         <div>

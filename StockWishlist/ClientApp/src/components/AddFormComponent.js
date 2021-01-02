@@ -15,15 +15,43 @@ import { NoteMinor } from '@shopify/polaris-icons';
 import { projectStorage } from '../firebase/config';
 import axios from 'axios';
 
-const AddFormComponent = ({setLoadingGrid}) => {
+const AddFormComponent = ({ setLoadingGrid }) => {
+    // state variable indicating if the grid is active or not
     const [active, setActive] = useState(false);
+
+    // state variable holding the company name
     const [companyName, setCompanyName] = useState('');
+
+    // state variable holding the stock ticker
     const [stockTicker, setStockTicker] = useState('');
+
+    // state variable holding the stock exchange 
     const [stockExchange, setStockExchange] = useState(['NYSE']);
+
+    // state variable holding the due-diligence of the company
     const [reason, setReason] = useState('');
+
+    // state variable containing an image of the company's logo
     const [file, setFile] = useState();
+
+    // state variable indicating if the primary action is 
+    // in a loading state
     const [loading, setLoading] = useState(false);
 
+    // variable holding the valid image types
+    const validImageTypes = ['image/jpeg', 'image/png'];
+
+    /**
+     * A function which sets the state when a file
+     * is uploaded
+     */
+    const handleDropZoneDrop = useCallback(
+        (_dropFiles, acceptedFiles, _rejectedFiles) => setFile(file => acceptedFiles[0]), []);
+
+    /**
+     * Reset states when user enters or exists the
+     * form
+     */
     const handleChange = useCallback(
         () => {
             setActive(!active)
@@ -36,12 +64,23 @@ const AddFormComponent = ({setLoadingGrid}) => {
         }, [active]
     );
 
+    /**
+     * A function which handles the button submit on 
+     * the form
+     */
     const handleSubmit = () => {
+        // set button loading state
         setLoading(true);
-        console.log({ companyName, stockTicker, stockExchange, reason, file });
+
+        // create reference to image in firebase storage
         const storageRef = projectStorage.ref(file.name);
+
+        // add the file to firebase 
         storageRef.put(file).then(() => {
+            // obtain the download URl
             storageRef.getDownloadURL().then(imageUrl => {
+                // send API request containing stock information 
+                // and the download image URL 
                 const request = {
                     companyName,
                     stockExchange: stockExchange[0],
@@ -50,17 +89,14 @@ const AddFormComponent = ({setLoadingGrid}) => {
                     reason
                 }
                 axios.post('/api/wishlist', request).then(() => {
+                    // reset states
                     handleChange();
+                    // reload grid to reflect new state
                     setLoadingGrid(true);
                 });
             });
         });
     }
-
-    const handleDropZoneDrop = useCallback(
-        (_dropFiles, acceptedFiles, _rejectedFiles) => setFile(file => acceptedFiles[0]), []);
-
-    const validImageTypes = ['image/jpeg', 'image/png'];
 
     const fileUpload = !file && <DropZone.FileUpload />;
     const uploadedFile = file && (
