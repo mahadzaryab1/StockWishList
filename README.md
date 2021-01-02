@@ -23,3 +23,8 @@ cd StockWishlist/ # change directory to project folder
 dotnet run # build and run the application
 ```
 The output pane will give you two URLs where the application is being hosted on your local machine. It is highly recommended you use the link beginning with *https://* 
+
+## Important endpoints
+* **/** - landing page of the application
+* **/swagger** - the swagger documentation for the API
+* **/api/wishlist** - the endpoint where all the API requests for this application are made
