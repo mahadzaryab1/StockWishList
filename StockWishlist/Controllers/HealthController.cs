@@ -8,11 +8,16 @@ using StockWishlist.Models;
 
 namespace StockWishlist.Controllers
 {
+    /// <summary>
+    /// Allows a health check to be performed
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class HealthController : ControllerBase
     {
-        // GET: api/Health
+        /// <summary>
+        /// Indicates the status of the API
+        /// </summary>
         [HttpGet]
         public ActionResult<Status> Get()
         {
