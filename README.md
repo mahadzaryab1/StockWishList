@@ -9,4 +9,4 @@ The Stock Wish List is a project that allows the user to keep track of the stock
 * Image Storage - Google Firebase
 
 ## Running the Application (Method 1: Recommended)
-The easiest and quickest way to get this application running is by opening the [solution file](StockWishlist.sln) in Visual Studio 2019. 
+The easiest and quickest way to get this application running is by opening the [solution file](StockWishlist.sln) in Visual Studio 2019. You can do this by simply double clicking the solution file and opening it in Visual Studio when prompted. You can also open up Visual Studio first, go to File->Open->Project/Solution and navigate to the solution file from there. This will load the entire application and all of its contents in the IDE. Now, you can simply navigate to Debug->Start Debugging and the application should start up automatically. 
