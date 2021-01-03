@@ -10,6 +10,10 @@ using StockWishlist.DataProvider.Models;
 
 namespace StockWishlist.Controllers
 {
+    /// <summary>
+    /// Allows access to the wish list entries
+    /// made by the user
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class WishlistController : ControllerBase
@@ -23,7 +27,7 @@ namespace StockWishlist.Controllers
 
         /// <summary>
         /// Gets all the wish list entries from
-        /// a session. 
+        /// a session
         /// </summary>
         [HttpGet]
         public async Task<ActionResult<Wishlist>> Get()
