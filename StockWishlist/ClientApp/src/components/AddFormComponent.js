@@ -171,11 +171,11 @@ const AddFormComponent = ({ setLoadingGrid }) => {
                         </FormLayout.Group>
                         <FormLayout.Group>
                             <TextField
-                                label="Why do you want to invest in this company? (150 Characters Limit)"
+                                label="Why do you want to invest in this company? (120 Characters Limit)"
                                 value={reason}
                                 onChange={(newValue) => { setReason(newValue) }}
                                 multiline={3}
-                                maxLength={150}
+                                maxLength={120}
                                 showCharacterCount
                                 error={reason.length > 0 ? false : "A description of the investment is required"}
                             />
